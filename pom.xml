@@ -21,6 +21,8 @@
         <version.org.postgresql>42.2.20</version.org.postgresql>
     </properties>
 
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,91 +88,15 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>hibernate</id>
-            <build>
-                <plugins>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>hibernate-create-classes</id>
-            <build>
-                <plugins>
-<!--                    <plugin>-->
-<!--                        <groupId>org.codehaus.mojo</groupId>-->
-<!--                        <artifactId>hibernate3-maven-plugin</artifactId>-->
-<!--                        <version>2.2</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>tablakbol_osztalyokat</id>-->
-<!--                                <phase>generate-sources</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>hbm2java</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <components>-->
-<!--                                        <component>-->
-<!--                                            <name>hbm2java</name>-->
-<!--                                            <outputDirectory>src/main/java</outputDirectory>-->
-<!--                                            <implementation>jdbcconfiguration</implementation>-->
-<!--                                        </component>-->
-<!--                                    </components>-->
-<!--                                    <componentProperties>-->
-<!--                                        <revengfile>/src/main/resources/hbm2java/model.reveng.xml</revengfile>-->
-<!--                                        <propertyfile>/src/main/resources/hbm2java/hibernate.properties</propertyfile>-->
-<!--                                        <jdk5>true</jdk5>-->
-<!--                                        <ejb3>true</ejb3>-->
-<!--                                    </componentProperties>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                        <dependencies>-->
-<!--                            <dependency>-->
-<!--                                <groupId>org.postgresql</groupId>-->
-<!--                                <artifactId>postgresql</artifactId>-->
-<!--                                <version>${version.org.postgresql}</version>-->
-<!--                            </dependency>-->
-<!--                            <dependency>-->
-<!--                                <groupId>cglib</groupId>-->
-<!--                                <artifactId>cglib-nodep</artifactId>-->
-<!--                                <version>2.2.2</version>-->
-<!--                            </dependency>-->
-<!--                        </dependencies>-->
-<!--                    </plugin>-->
-                    <plugin>
-                        <artifactId>maven-clean-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <configuration>
-                            <filesets>
-                                <fileset>
-                                    <directory>src/main/java/davidkecskes/stateproject/jpa</directory>
-                                    <includes>
-                                        <include>**/*.java</include>
-                                    </includes>
-                                    <followSymlinks>false</followSymlinks>
-                                </fileset>
-                            </filesets>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>spring</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
