@@ -34,7 +34,7 @@ spring:
 
 server:
     port: $PORT
-    
+
 security:
     firebase-props:
         database-url: ${FIREBASE_DATABASE}
