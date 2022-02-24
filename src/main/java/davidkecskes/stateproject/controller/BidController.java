@@ -2,7 +2,9 @@ package davidkecskes.stateproject.controller;
 
 import davidkecskes.stateproject.dto.bid.BidRequestDTO;
 import davidkecskes.stateproject.exception.DataNotFoundException;
-import davidkecskes.stateproject.model.Bids;
+import davidkecskes.stateproject.model.BidStatuses;
+import davidkecskes.stateproject.model.ProductCategory;
+import davidkecskes.stateproject.repository.BidStatusRepository;
 import davidkecskes.stateproject.service.BidService;
 import davidkecskes.stateproject.utils.ExceptionHandlerUtils;
 import davidkecskes.stateproject.utils.ResponseBodyUtil;
@@ -11,12 +13,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+
 @RestController
 @RequestMapping("/api/bid")
 @AllArgsConstructor
 public class BidController {
-
     private BidService bidService;
+    private BidStatusRepository bidStatusRepository;
+
+    @PostConstruct
+    private void saveBidStatuses() {
+        if (!bidStatusRepository.existsById(0L)) bidStatusRepository.save(new BidStatuses(1L, "WAITING_FOR_OWNER"));
+        if (!bidStatusRepository.existsById(1L)) bidStatusRepository.save(new BidStatuses(2L, "WAITING_FOR_BUYER"));
+        if (!bidStatusRepository.existsById(2L)) bidStatusRepository.save(new BidStatuses(3L, "DECLINED"));
+        if (!bidStatusRepository.existsById(3L)) bidStatusRepository.save(new BidStatuses(4L, "FINISHED"));
+    }
 
     @PostMapping
     public ResponseEntity<?> createBid(@RequestBody BidRequestDTO bidRequestDTO) {

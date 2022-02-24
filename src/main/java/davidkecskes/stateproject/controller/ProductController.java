@@ -2,6 +2,8 @@ package davidkecskes.stateproject.controller;
 
 import davidkecskes.stateproject.dto.ProductDTO;
 import davidkecskes.stateproject.exception.DataNotFoundException;
+import davidkecskes.stateproject.model.ProductCategory;
+import davidkecskes.stateproject.repository.ProductCategoryRepository;
 import davidkecskes.stateproject.service.ProductService;
 import davidkecskes.stateproject.utils.ExceptionHandlerUtils;
 import davidkecskes.stateproject.utils.ResponseBodyUtil;
@@ -10,11 +12,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @RestController
 @RequestMapping("api/product")
 @AllArgsConstructor
 public class ProductController {
     private final ProductService productService;
+    private final ProductCategoryRepository productCategoryRepository;
+
+    @PostConstruct
+    private void saveProductCategories() {
+        if(!productCategoryRepository.existsById(0L)) productCategoryRepository.save(new ProductCategory(0L, "Other"));
+        if(!productCategoryRepository.existsById(1L)) productCategoryRepository.save(new ProductCategory(1L, "Tile"));
+        if(!productCategoryRepository.existsById(2L)) productCategoryRepository.save(new ProductCategory(2L, "Cement"));
+        if(!productCategoryRepository.existsById(3L)) productCategoryRepository.save(new ProductCategory(3L, "Paint"));
+        if(!productCategoryRepository.existsById(4L)) productCategoryRepository.save(new ProductCategory(4L, "Something"));
+    }
 
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
