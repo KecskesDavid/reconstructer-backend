@@ -23,4 +23,6 @@ public class UserDTO {
 
     @NotBlank(message = "Not valid phone number")
     private String phoneNumber;
+
+    private String profilePicture;
 }

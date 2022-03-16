@@ -12,5 +12,5 @@ public interface UserService {
 
     String registerUser(UserDTO userDTO);
 
-    void updateUser(String id, String password);
+    void updateUser(String id, UserDTO userDTO);
 }

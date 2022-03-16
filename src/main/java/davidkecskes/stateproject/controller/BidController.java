@@ -3,7 +3,6 @@ package davidkecskes.stateproject.controller;
 import davidkecskes.stateproject.dto.bid.BidRequestDTO;
 import davidkecskes.stateproject.exception.DataNotFoundException;
 import davidkecskes.stateproject.model.BidStatuses;
-import davidkecskes.stateproject.model.ProductCategory;
 import davidkecskes.stateproject.repository.BidStatusRepository;
 import davidkecskes.stateproject.service.BidService;
 import davidkecskes.stateproject.utils.ExceptionHandlerUtils;

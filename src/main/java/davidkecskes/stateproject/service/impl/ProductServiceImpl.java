@@ -63,7 +63,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateProduct(Long id, ProductDTO productDTO) {
-        Products product = productRepository.findById(id).orElseThrow(() -> new DataNotFoundException("No product with the specific id!"));
+        Products product = productRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("No product with the specific id!"));
 
         product.setName(productDTO.getName());
         product.setCategory(new ProductCategory(

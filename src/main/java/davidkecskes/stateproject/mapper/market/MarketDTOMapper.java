@@ -19,7 +19,8 @@ public class MarketDTOMapper implements Mapper<Markets, MarketDTOResponse> {
                 market.getUsers().getId(),
                 market.getUsers().getName(),
                 market.getUsers().getEmail(),
-                market.getUsers().getPhoneNumber()
+                market.getUsers().getPhoneNumber(),
+                market.getUsers().getProfilePicture()
         );
         ProductDTO productDTO = new ProductDTO(
                 market.getProducts().getId(),

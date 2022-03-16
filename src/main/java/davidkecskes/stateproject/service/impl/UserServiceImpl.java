@@ -48,10 +48,15 @@ public class UserServiceImpl implements davidkecskes.stateproject.service.UserSe
     }
 
     @Override
-    public void updateUser(String id, String password) {
+    public void updateUser(String id, UserDTO userDTO){
         // No further checking is needed because the firebase and frontend should check the data
         Users user = userRepository.findById(id).
                 orElseThrow(() -> new DataNotFoundException("There is no user with this id."));
+
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+        user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setProfilePicture(userDTO.getProfilePicture());
 
         userRepository.save(user);
     }

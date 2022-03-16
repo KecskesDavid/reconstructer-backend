@@ -25,7 +25,8 @@ public class BidDTOMapper implements Mapper<Bids, BidResponseDTO> {
                                 bid.getMarkets().getUsers().getId(),
                                 bid.getMarkets().getUsers().getName(),
                                 bid.getMarkets().getUsers().getEmail(),
-                                bid.getMarkets().getUsers().getPhoneNumber()
+                                bid.getMarkets().getUsers().getPhoneNumber(),
+                                bid.getMarkets().getUsers().getProfilePicture()
                         ),
                         new ProductDTO(
                                 bid.getMarkets().getProducts().getId(),
@@ -46,13 +47,15 @@ public class BidDTOMapper implements Mapper<Bids, BidResponseDTO> {
                         bid.getOwner().getId(),
                         bid.getOwner().getName(),
                         bid.getOwner().getEmail(),
-                        bid.getOwner().getPhoneNumber()
+                        bid.getOwner().getPhoneNumber(),
+                        bid.getOwner().getProfilePicture()
                 ),
                 new UserDTO(
                         bid.getBuyer().getId(),
                         bid.getBuyer().getName(),
                         bid.getBuyer().getEmail(),
-                        bid.getBuyer().getPhoneNumber()
+                        bid.getBuyer().getPhoneNumber(),
+                        bid.getBuyer().getProfilePicture()
                 ),
                 new BidStatusDTO(
                         bid.getBidStatuses().getId(),

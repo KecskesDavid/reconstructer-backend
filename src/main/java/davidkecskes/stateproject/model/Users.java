@@ -47,10 +47,11 @@ public class Users implements java.io.Serializable {
     )
     private String phoneNumber;
 
-    @Lob
-    @Type(type = "org.hibernate.type.BinaryType")
-    @Column(name = "picture")
-    private byte[] picture;
+    @Column(
+            name = "picture",
+            length = 255
+    )
+    private String profilePicture;
 
     @OneToMany(
             cascade = CascadeType.ALL,

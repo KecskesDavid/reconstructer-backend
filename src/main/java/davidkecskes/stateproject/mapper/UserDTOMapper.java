@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class UserDTOMapper implements Mapper<Users, UserDTO> {
     @Override
     public UserDTO convertOne(Users user) {
-        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getPhoneNumber());
+        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getPhoneNumber(), user.getProfilePicture());
     }
 
     @Override

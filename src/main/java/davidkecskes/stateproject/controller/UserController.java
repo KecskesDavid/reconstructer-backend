@@ -49,9 +49,9 @@ public class UserController {
     }
 
     @PutMapping(path = "{userId}")
-    public ResponseEntity<?> updateUser(@PathVariable("userId") String id, @RequestBody String password) {
+    public ResponseEntity<?> updateUser(@PathVariable("userId") String id, @Valid @RequestBody UserDTO userDTO) {
         try {
-            userService.updateUser(id, password);
+            userService.updateUser(id, userDTO);
             return new ResponseEntity<>("Update successful!", HttpStatus.OK);
         } catch (Exception e) {
             return ExceptionHandlerUtils.handler(e);

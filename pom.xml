@@ -17,11 +17,9 @@
     <description>State Project</description>
 
     <properties>
-        <java.version>14</java.version>
+        <java.version>11</java.version>
         <version.org.postgresql>42.2.20</version.org.postgresql>
     </properties>
-
-
 
     <dependencies>
         <dependency>
@@ -90,6 +88,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <plugins>
             <plugin>
@@ -98,5 +97,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
