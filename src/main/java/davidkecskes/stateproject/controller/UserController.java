@@ -52,7 +52,11 @@ public class UserController {
     public ResponseEntity<?> updateUser(@PathVariable("userId") String id, @Valid @RequestBody UserDTO userDTO) {
         try {
             userService.updateUser(id, userDTO);
-            return new ResponseEntity<>("Update successful!", HttpStatus.OK);
+
+            ResponseBodyUtil responseBodyUtil = new ResponseBodyUtil();
+            responseBodyUtil.addToResponseBody("message", "Update successful!");
+
+            return new ResponseEntity<>(responseBodyUtil.createResponseBody(), HttpStatus.OK);
         } catch (Exception e) {
             return ExceptionHandlerUtils.handler(e);
         }
