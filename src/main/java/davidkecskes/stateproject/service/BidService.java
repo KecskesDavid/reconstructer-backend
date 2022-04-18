@@ -9,13 +9,15 @@ public interface BidService {
 
     Long createBid(BidRequestDTO bidDTO);
 
-    BidResponseDTO updateBid(Long bidId, BidRequestDTO bidDTO);
+//    BidResponseDTO updateBid(Long bidId, BidRequestDTO bidDTO);
 
     void deleteBid(Long bidId);
 
-    List<BidResponseDTO> getAllBidsForProduct(Long marketId);
+//    List<BidResponseDTO> getAllBidsForProduct(Long marketId);
+//
+//    List<BidResponseDTO> getAllBidsForUserAsBuyer(String userId);
+//
+//    List<BidResponseDTO> getAllBidsForUserHistory(String userId);
 
-    List<BidResponseDTO> getAllBidsForUserAsBuyer(String userId);
-
-    List<BidResponseDTO> getAllBidsForUserHistory(String userId);
+    List<BidResponseDTO> getProductBidHistoryForABidder(String bidderId, Long marketId);
 }

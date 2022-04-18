@@ -4,15 +4,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(
-        name = "bids"
+        name = "bids_of_bidder"
 )
 @Data
 @NoArgsConstructor
-public class Bids implements java.io.Serializable {
+public class BidBidder extends Bid {
+    // This class is for requesting the history as a bidder for a product
 
     @Id
     @Column(
@@ -46,17 +46,15 @@ public class Bids implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
-            name = "buyer",
+            name = "bidder",
             nullable = false
     )
-    private Users buyer;
+    private Users bidder;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "bid_status_id",
-            nullable = false
+    @Column(
+            name = "bid_type"
     )
-    private BidStatuses bidStatuses;
+    private BidType bidType;
 
     @Column(
             name = "timestamp",
@@ -76,11 +74,18 @@ public class Bids implements java.io.Serializable {
     )
     private Double quantity;
 
-    public Bids(Long timestamp, Double price, Double quantity) {
+    @Column(
+            name = "message",
+            nullable = false,
+            length = 25
+    )
+    private String message;
+
+    public BidBidder(Long timestamp, Double price, Double quantity, String message, BidType bidType) {
         this.timestamp = timestamp;
-        this.price = price;
         this.quantity = quantity;
+        this.price = price;
+        this.message = message;
+        this.bidType = bidType;
     }
 }
-
-

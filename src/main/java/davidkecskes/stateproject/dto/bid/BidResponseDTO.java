@@ -2,6 +2,7 @@ package davidkecskes.stateproject.dto.bid;
 
 import davidkecskes.stateproject.dto.MarketDTOResponse;
 import davidkecskes.stateproject.dto.UserDTO;
+import davidkecskes.stateproject.model.BidType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,9 +16,10 @@ public class BidResponseDTO {
     private MarketDTOResponse marketDTO;
     private UserDTO owner;
     private UserDTO buyer;
-    private BidStatusDTO bidStatusDTO;
-    private Long madeOn;
+    private Long timestamp;
     private Double price;
     private Double quantity;
+    private BidType bidType;
+    private String message;
 
 }

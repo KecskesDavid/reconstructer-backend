@@ -19,18 +19,18 @@ import javax.annotation.PostConstruct;
 @AllArgsConstructor
 public class BidController {
     private BidService bidService;
-    private BidStatusRepository bidStatusRepository;
+//    private BidStatusRepository bidStatusRepository;
 
-    @PostConstruct
-    private void saveBidStatuses() {
-        if (!bidStatusRepository.existsById(0L)) bidStatusRepository.save(new BidStatuses(1L, "WAITING_FOR_OWNER"));
-        if (!bidStatusRepository.existsById(1L)) bidStatusRepository.save(new BidStatuses(2L, "WAITING_FOR_BUYER"));
-        if (!bidStatusRepository.existsById(2L)) bidStatusRepository.save(new BidStatuses(3L, "DECLINED"));
-        if (!bidStatusRepository.existsById(3L)) bidStatusRepository.save(new BidStatuses(4L, "FINISHED"));
-    }
+//    @PostConstruct
+//    private void saveBidStatuses() {
+//        if (!bidStatusRepository.existsById(0L)) bidStatusRepository.save(new BidStatuses(1L, "WAITING_FOR_OWNER"));
+//        if (!bidStatusRepository.existsById(1L)) bidStatusRepository.save(new BidStatuses(2L, "WAITING_FOR_BUYER"));
+//        if (!bidStatusRepository.existsById(2L)) bidStatusRepository.save(new BidStatuses(3L, "DECLINED"));
+//        if (!bidStatusRepository.existsById(3L)) bidStatusRepository.save(new BidStatuses(4L, "FINISHED"));
+//    }
 
     @PostMapping
-    public ResponseEntity<?> createBid(@RequestBody BidRequestDTO bidRequestDTO) {
+    public ResponseEntity<?> placeBid(@RequestBody BidRequestDTO bidRequestDTO) {
         try {
             Long bidId = bidService.createBid(bidRequestDTO);
 
@@ -44,14 +44,14 @@ public class BidController {
         }
     }
 
-    @PostMapping(path = "/update/{bidId}")
-    public ResponseEntity<?> updateBid(@PathVariable Long bidId, @RequestBody BidRequestDTO bidRequestDTO) {
-        try {
-            return new ResponseEntity<>(bidService.updateBid(bidId, bidRequestDTO), HttpStatus.OK);
-        } catch (DataNotFoundException e) {
-            return ExceptionHandlerUtils.handler(e);
-        }
-    }
+//    @PostMapping(path = "/update/{bidId}")
+//    public ResponseEntity<?> updateBid(@PathVariable Long bidId, @RequestBody BidRequestDTO bidRequestDTO) {
+//        try {
+//            return new ResponseEntity<>(bidService.updateBid(bidId, bidRequestDTO), HttpStatus.OK);
+//        } catch (DataNotFoundException e) {
+//            return ExceptionHandlerUtils.handler(e);
+//        }
+//    }
 
     @PostMapping(path = "/delete/{bidId}")
     public ResponseEntity<?> deleteBid(@PathVariable Long bidId) {
@@ -68,30 +68,39 @@ public class BidController {
         }
     }
 
-    @GetMapping(path = "/product/{bidId}")
-    public ResponseEntity<?> getAllBidsForProduct(@PathVariable Long bidId) {
+//    @GetMapping(path = "/product/{bidId}")
+//    public ResponseEntity<?> getAllBidsForProduct(@PathVariable Long bidId) {
+//        try {
+//            return new ResponseEntity<>(bidService.getAllBidsForProduct(bidId), HttpStatus.OK);
+//        } catch (DataNotFoundException e) {
+//            return ExceptionHandlerUtils.handler(e);
+//        }
+//    }
+
+    @GetMapping(path = "/history")
+    public ResponseEntity<?> getProductBidHistoryForABidder(@RequestParam String bidder, @RequestParam Long market) {
         try {
-            return new ResponseEntity<>(bidService.getAllBidsForProduct(bidId), HttpStatus.OK);
+            return new ResponseEntity<>(bidService.getProductBidHistoryForABidder(bidder, market), HttpStatus.OK);
         } catch (DataNotFoundException e) {
             return ExceptionHandlerUtils.handler(e);
         }
     }
 
-    @GetMapping(path = "/buyer/{userId}")
-    public ResponseEntity<?> getAllBidsForUserAsBuyer(@PathVariable String userId) {
-        try {
-            return new ResponseEntity<>(bidService.getAllBidsForUserAsBuyer(userId), HttpStatus.OK);
-        } catch (DataNotFoundException e) {
-            return ExceptionHandlerUtils.handler(e);
-        }
-    }
-
-    @GetMapping(path = "/history/{userId}")
-    public ResponseEntity<?> getAllBidsForUserHistory(@PathVariable String userId) {
-        try {
-            return new ResponseEntity<>(bidService.getAllBidsForUserHistory(userId), HttpStatus.OK);
-        } catch (DataNotFoundException e) {
-            return ExceptionHandlerUtils.handler(e);
-        }
-    }
+//    @GetMapping(path = "/buyer/{userId}")
+//    public ResponseEntity<?> getAllBidsForUserAsBuyer(@PathVariable String userId) {
+//        try {
+//            return new ResponseEntity<>(bidService.getAllBidsForUserAsBuyer(userId), HttpStatus.OK);
+//        } catch (DataNotFoundException e) {
+//            return ExceptionHandlerUtils.handler(e);
+//        }
+//    }
+//
+//    @GetMapping(path = "/history/{userId}")
+//    public ResponseEntity<?> getAllBidsForUserHistory(@PathVariable String userId) {
+//        try {
+//            return new ResponseEntity<>(bidService.getAllBidsForUserHistory(userId), HttpStatus.OK);
+//        } catch (DataNotFoundException e) {
+//            return ExceptionHandlerUtils.handler(e);
+//        }
+//    }
 }
